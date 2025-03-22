@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#6366f1',
+secondary: '#f59e0b'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+</style>
+</head>
+<body class="bg-gray-50">
+<nav class="fixed top-0 w-full bg-white shadow-sm z-50 px-4 h-14 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<a href="Profile-Management.html" data-readdy="true" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-arrow-left-s-line text-gray-600 text-xl"></i>
+</a>
+<h1 class="font-semibold text-gray-900"> Profile</h1>
+</div>
+<button id="saveButton" class="text-primary font-medium flex items-center gap-2">Save</button>
+</nav>
+<div class="mt-14 px-4 pb-20">
+<form id="profileForm" class="mt-6">
+<div class="flex flex-col items-center">
+<div class="relative">
+<img id="profilePreview" src="https://public.readdy.ai/ai/img_res/6a8bcd357784f1c8f6bc1cb3d3c6fdfa.jpg" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md" alt="Profile Photo">
+<input type="file" id="profilePhotoInput" accept="image/*" class="hidden">
+<label for="profilePhotoInput" class="absolute bottom-0 right-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+<i class="ri-camera-line"></i>
+</label>
+</div>
+</div>
+<div class="mt-8 space-y-6">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+<input type="text" id="fullName" value="Emily Anderson" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-primary">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+<input type="email" id="email" value="emily.anderson@company.com" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-primary">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+<textarea id="bio" rows="4" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-primary">Professional software developer with 5+ years of experience in full-stack development. Passionate about creating user-friendly applications and solving complex problems.</textarea>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+<input type="tel" id="phone" value="+1 (555) 123-4567" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-primary">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+<input type="text" id="location" value="San Francisco, CA" class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-primary">
+</div>
+<div>
+<h3 class="text-sm font-medium text-gray-700 mb-2">Privacy Settings</h3>
+<div class="space-y-3">
+<label class="flex items-center">
+<input type="checkbox" checked class="w-4 h-4 text-primary border-gray-300 rounded">
+<span class="ml-2 text-sm text-gray-600">Show email to other users</span>
+</label>
+<label class="flex items-center">
+<input type="checkbox" checked class="w-4 h-4 text-primary border-gray-300 rounded">
+<span class="ml-2 text-sm text-gray-600">Show phone number to other users</span>
+</label>
+<label class="flex items-center">
+<input type="checkbox" checked class="w-4 h-4 text-primary border-gray-300 rounded">
+<span class="ml-2 text-sm text-gray-600">Show location to other users</span>
+</label>
+</div>
+</div>
+</div>
+</form>
+</div>
+<div id="notification" class="fixed inset-0 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+  <div class="bg-white rounded-xl shadow-2xl p-6 flex flex-col items-center max-w-xs w-full mx-4">
+    <div id="notificationIcon" class="w-16 h-16 rounded-full flex items-center justify-center mb-4">
+      <i class="ri-check-line text-3xl"></i>
+    </div>
+    <p id="notificationMessage" class="text-center text-gray-800 font-medium"></p>
+    <button id="retryButton" class="mt-4 px-4 py-2 bg-primary text-white rounded-button hidden">Retry</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const profilePhotoInput = document.getElementById('profilePhotoInput');
+  const profilePreview = document.getElementById('profilePreview');
+  const saveButton = document.getElementById('saveButton');
+  const notification = document.getElementById('notification');
+  const notificationIcon = document.getElementById('notificationIcon');
+  const notificationMessage = document.getElementById('notificationMessage');
+  const retryButton = document.getElementById('retryButton');
+  const form = document.getElementById('profileForm');
+
+  profilePhotoInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        profilePreview.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  function showNotification(type, message) {
+    notification.classList.remove('opacity-0', 'pointer-events-none');
+    notificationMessage.textContent = message;
+    
+    if (type === 'success') {
+      notificationIcon.className = 'w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4';
+      notificationIcon.innerHTML = '<i class="ri-check-line text-3xl text-green-500"></i>';
+      retryButton.classList.add('hidden');
+    } else {
+      notificationIcon.className = 'w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-4';
+      notificationIcon.innerHTML = '<i class="ri-close-line text-3xl text-red-500"></i>';
+      retryButton.classList.remove('hidden');
+    }
+
+    setTimeout(() => {
+      notification.classList.add('opacity-0', 'pointer-events-none');
+    }, 3000);
+  }
+
+  async function saveProfile() {
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+
+    if (!fullName || !email || !phone) {
+      showNotification('error', 'Please fill in all required fields');
+      return;
+    }
+
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      showNotification('error', 'Please enter a valid email address');
+      return;
+    }
+
+    saveButton.disabled = true;
+    saveButton.innerHTML = '<i class="ri-loader-4-line animate-spin"></i>';
+    saveButton.classList.add('opacity-70');
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      if (Math.random() > 0.5) { // Simulate random success/failure
+        throw new Error('Failed to save profile');
+      }
+
+      showNotification('success', 'Profile updated successfully');
+    } catch (error) {
+      showNotification('error', 'Failed to save profile. Please try again.');
+    } finally {
+      saveButton.disabled = false;
+      saveButton.innerHTML = 'Save';
+      saveButton.classList.remove('opacity-70');
+    }
+  }
+
+  saveButton.addEventListener('click', saveProfile);
+  retryButton.addEventListener('click', saveProfile);
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    saveProfile();
+  });
+});
+</script>
+</body>
+</html>

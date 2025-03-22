@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=375px, initial-scale=1.0">
+<title>Digital Learning Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#4F46E5',
+secondary: '#F59E0B'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { width: 375px; margin: 0 auto; min-height: 100vh; background: #FFFFFF; }
+.course-grid::-webkit-scrollbar { display: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+</style>
+</head>
+<body class="font-sans">
+<nav class="fixed top-0 w-full bg-white z-50 border-b">
+<div class="flex items-center justify-between px-4 h-14">
+<h1 class="text-xl font-['Pacifico'] text-primary">logo</h1>
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 flex items-center justify-center cursor-pointer">
+<i class="ri-search-line text-gray-600"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center cursor-pointer">
+<i class="ri-shopping-cart-line text-gray-600"></i>
+</button>
+</div>
+</div>
+<div class="px-4 pb-3">
+<div class="relative">
+<input type="text" placeholder="Search for courses..." class="w-full h-10 pl-10 pr-4 bg-gray-50 rounded-full text-sm focus:outline-none">
+<i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+</div>
+</div>
+</nav>
+<main class="mt-28 mb-20 px-4">
+<section class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">Featured Courses</h2>
+<a href="#" class="text-primary text-sm">See All</a>
+</div>
+<div class="hide-scrollbar flex gap-4 overflow-x-auto pb-4">
+<div class="min-w-[280px] bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/28617a7b9947004c25984521c8bcff3c.jpg" class="w-full h-40 object-cover" alt="Course">
+<div class="p-4">
+<h3 class="font-medium mb-2">Advanced Web Development</h3>
+<p class="text-sm text-gray-600 mb-2">By Sarah Johnson</p>
+<div class="flex items-center gap-1 mb-3">
+<i class="ri-star-fill text-yellow-400"></i>
+<span class="text-sm">4.8 (2.4k reviews)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-semibold">$89.99</span>
+<button class="bg-primary text-white px-4 py-2 rounded-button text-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-8">
+<h2 class="text-lg font-semibold mb-4">Categories</h2>
+<div class="grid grid-cols-4 gap-4">
+<div class="cursor-pointer text-center">
+<div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/54d56c69d68fe5e36bfa06f5afbb21c1.jpg" class="w-full h-full object-cover" alt="Programming">
+</div>
+<span class="text-xs block truncate">Programming</span>
+</div>
+<div class="cursor-pointer text-center">
+<div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/320a8668d9e70b4ef03acac874ec47d3.jpg" class="w-full h-full object-cover" alt="Business">
+</div>
+<span class="text-xs block truncate">Business</span>
+</div>
+<div class="cursor-pointer text-center">
+<div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/f83df1b3107a440a1969b147a4e5b83a.jpg" class="w-full h-full object-cover" alt="Design">
+</div>
+<span class="text-xs block truncate">Design</span>
+</div>
+<div class="cursor-pointer text-center">
+<div class="w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/f7dfae2b37341f3ff5c9d399a74e43a2.jpg" class="w-full h-full object-cover" alt="Marketing">
+</div>
+<span class="text-xs block truncate">Marketing</span>
+</div>
+</div>
+</section>
+<section>
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">Top Selling</h2>
+<a href="#" class="text-primary text-sm">See All</a>
+</div>
+<div class="space-y-4">
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/8cf9342ceebbe4ec1bc8f8d227f9d199.jpg" class="w-full h-48 object-cover" alt="Course">
+<div class="p-4">
+<h3 class="font-medium mb-2">Data Science Fundamentals</h3>
+<p class="text-sm text-gray-600 mb-2">By Michael Chen</p>
+<div class="flex items-center gap-1 mb-3">
+<i class="ri-star-fill text-yellow-400"></i>
+<span class="text-sm">4.9 (1.8k reviews)</span>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<span class="font-semibold">$79.99</span>
+<span class="text-sm text-gray-500 line-through ml-2">$99.99</span>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-button text-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 w-full bg-white border-t">
+<div class="grid grid-cols-4 h-16">
+<a href="#" class="flex flex-col items-center justify-center text-primary">
+<i class="ri-home-5-line"></i>
+<span class="text-xs mt-1"><a href="Online-Ebook-Courses-Store.html"> Home</a></span>
+</a>
+<a href="Online-Ebook-Courses-Store.html" data-readdy="true" class="flex flex-col items-center justify-center text-gray-400">
+<i class="ri-book-open-line"></i>
+<span class="text-xs mt-1"><a href="Courses-Catelog-page.html">  Courses</a></span>
+<a href="#" class="flex flex-col items-center justify-center text-gray-400">
+<i class="ri-bookmark-line"></i>
+<span class="text-xs mt-1"><a href="User-Course-Library.html"> Library</a></span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center text-gray-400">
+<i class="ri-user-line"></i>
+<span class="text-xs mt-1"><a href="Profile-Management.html"> Profile</a></span>
+</a>
+</div>
+</nav>
+<script>
+const mockCourses = [
+{
+id: 1,
+title: "Advanced Web Development",
+instructor: "Sarah Johnson",
+rating: 4.8,
+reviews: 2400,
+price: 89.99,
+image: "course1.jpg"
+}
+];
+const mockCategories = [
+{
+id: 1,
+name: "Programming",
+icon: "code-line"
+}
+];
+</script>
+</body>
+</html>

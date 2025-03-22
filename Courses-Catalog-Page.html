@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=375px, initial-scale=1.0">
+<title>Course Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#4F46E5',
+secondary: '#F59E0B'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { width: 375px; margin: 0 auto; min-height: 100vh; background: #FFFFFF; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.filter-modal { transform: translateY(100%); transition: transform 0.3s ease-out; }
+.filter-modal.show { transform: translateY(0); }
+</style>
+</head>
+<body class="font-sans">
+<nav class="fixed top-0 w-full bg-white z-50 border-b">
+<div class="flex items-center justify-between px-4 h-14">
+<a href="https://readdy.ai/home/f67ae859-8ef5-4150-86df-16b46d657063/f6fd4afe-b913-42a8-9c5f-73ed5cf75914" data-readdy="true" class="text-xl font-['Pacifico'] text-primary">Top Courses</a>
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 flex items-center justify-center">
+<i class="ri-search-line text-gray-600"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center relative">
+<i class="ri-shopping-cart-line text-gray-600"></i>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+</button>
+</div>
+</div>
+</nav>
+<div class="fixed top-14 w-full bg-white z-40 border-b">
+<div class="px-4 py-3">
+<div class="relative">
+<input type="text" placeholder="Search courses..." class="w-full h-10 pl-10 pr-4 bg-gray-50 rounded-full text-sm focus:outline-none border-none">
+<i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+</div>
+</div>
+<div class="px-4 pb-3 hide-scrollbar overflow-x-auto">
+<div class="flex gap-2 items-center">
+<button onclick="toggleFilterModal()" class="flex items-center gap-1 px-4 py-2 bg-gray-50 rounded-full text-sm">
+<i class="ri-filter-3-line"></i>
+<span>Filters</span>
+</button>
+<button class="px-4 py-2 bg-gray-50 rounded-full text-sm whitespace-nowrap">All Courses</button>
+<button class="px-4 py-2 bg-gray-50 rounded-full text-sm whitespace-nowrap">Programming</button>
+<button class="px-4 py-2 bg-gray-50 rounded-full text-sm whitespace-nowrap">Design</button>
+<button class="px-4 py-2 bg-gray-50 rounded-full text-sm whitespace-nowrap">Business</button>
+</div>
+</div>
+</div>
+<main class="mt-40 mb-20 px-4">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">All Courses</h2>
+<button class="flex items-center gap-1 text-sm">
+<span>Sort by</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/32e61edf24dbfe20bf921f651fb07d07.jpg" class="w-full h-[120px] object-cover" alt="Course">
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 line-clamp-2">Advanced JavaScript Development</h3>
+<p class="text-xs text-gray-600 mb-1">David Miller</p>
+<div class="flex items-center gap-1 mb-2">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<span class="text-xs">4.9 (2.1k)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">$94.99</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/3db1ccec95a521f2636ff2273cb64315.jpg" class="w-full h-[120px] object-cover" alt="Course">
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 line-clamp-2">Social Media Marketing Mastery</h3>
+<p class="text-xs text-gray-600 mb-1">Jennifer Parker</p>
+<div class="flex items-center gap-1 mb-2">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<span class="text-xs">4.8 (1.6k)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">$79.99</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/e5c8bd80f8e68ca9a6ab2ac7dc37c726.jpg" class="w-full h-[120px] object-cover" alt="Course">
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 line-clamp-2">Blockchain & Crypto Fundamentals</h3>
+<p class="text-xs text-gray-600 mb-1">Alex Rodriguez</p>
+<div class="flex items-center gap-1 mb-2">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<span class="text-xs">4.7 (1.2k)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">$89.99</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/aca97011927b8f3ed421e0167d68fe8f.jpg" class="w-full h-[120px] object-cover" alt="Course">
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 line-clamp-2">Forex Trading Masterclass</h3>
+<p class="text-xs text-gray-600 mb-1">Robert Zhang</p>
+<div class="flex items-center gap-1 mb-2">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<span class="text-xs">4.6 (950)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">$99.99</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/ce4173e7d32ee37c8db5701c8b20184b.jpg" class="w-full h-[120px] object-cover" alt="Course">
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 line-clamp-2">Freelancing Success Guide</h3>
+<p class="text-xs text-gray-600 mb-1">Sophie Anderson</p>
+<div class="flex items-center gap-1 mb-2">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<span class="text-xs">4.8 (1.4k)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">$69.99</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/8840c223875848c798895d82419541cf.jpg" class="w-full h-[120px] object-cover" alt="Course">
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 line-clamp-2">AI & ChatGPT for Business</h3>
+<p class="text-xs text-gray-600 mb-1">Daniel Lee</p>
+<div class="flex items-center gap-1 mb-2">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<span class="text-xs">4.9 (2.3k)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">$129.99</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/1a96aa1ce1e98c777e9b40d0f08d408c.jpg" class="w-full h-[120px] object-cover" alt="Course">
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 line-clamp-2">Real Estate Investment Basics</h3>
+<p class="text-xs text-gray-600 mb-1">Michelle Watson</p>
+<div class="flex items-center gap-1 mb-2">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<span class="text-xs">4.7 (1.8k)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">$149.99</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/a52379cdf0cb31467a7f12311c776e45.jpg" class="w-full h-[120px] object-cover" alt="Course">
+<div class="p-3">
+<h3 class="font-medium text-sm mb-1 line-clamp-2">Content Writing & Blogging</h3>
+<p class="text-xs text-gray-600 mb-1">Emily Brooks</p>
+<div class="flex items-center gap-1 mb-2">
+<i class="ri-star-fill text-yellow-400 text-xs"></i>
+<span class="text-xs">4.6 (890)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">$59.99</span>
+<button class="bg-primary text-white px-2 py-1 rounded-button text-xs">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div id="filterModal" class="fixed bottom-0 left-0 w-full h-[70vh] bg-white rounded-t-2xl shadow-lg z-50 filter-modal">
+<div class="p-4">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-semibold">Filters</h3>
+<button onclick="toggleFilterModal()" class="w-8 h-8 flex items-center justify-center">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<div class="mb-6">
+<h4 class="font-medium mb-3">Price Range</h4>
+<div class="flex gap-4">
+<button class="flex-1 py-2 border rounded-full text-sm">Free</button>
+<button class="flex-1 py-2 border rounded-full text-sm">Paid</button>
+</div>
+</div>
+<div class="mb-6">
+<h4 class="font-medium mb-3">Rating</h4>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-between py-2 px-4 border rounded-full text-sm">
+<div class="flex items-center gap-1">
+<i class="ri-star-fill text-yellow-400"></i>
+<span>4.5 & up</span>
+</div>
+<i class="ri-checkbox-circle-fill text-primary"></i>
+</button>
+<button class="w-full flex items-center justify-between py-2 px-4 border rounded-full text-sm">
+<div class="flex items-center gap-1">
+<i class="ri-star-fill text-yellow-400"></i>
+<span>4.0 & up</span>
+</div>
+</button>
+</div>
+</div>
+<div class="mb-6">
+<h4 class="font-medium mb-3">Duration</h4>
+<div class="flex gap-2 flex-wrap">
+<button class="px-4 py-2 border rounded-full text-sm">0-2 hours</button>
+<button class="px-4 py-2 border rounded-full text-sm">2-5 hours</button>
+<button class="px-4 py-2 border rounded-full text-sm">5+ hours</button>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-3 rounded-button">Apply Filters</button>
+</div>
+</div>
+<nav class="fixed bottom-0 w-full bg-white border-t">
+<div class="grid grid-cols-4 h-16">
+<a href="https://readdy.ai/home/f67ae859-8ef5-4150-86df-16b46d657063/f6fd4afe-b913-42a8-9c5f-73ed5cf75914" data-readdy="true" class="flex flex-col items-center justify-center text-gray-400">
+<i class="ri-home-5-line"></i>
+<span class="text-xs mt-1">Home</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center text-primary">
+<i class="ri-book-open-fill"></i>
+<span class="text-xs mt-1">Courses</span>
+</a>
+<a href="https://readdy.ai/home/f67ae859-8ef5-4150-86df-16b46d657063/76c57f15-b83f-460e-9235-696e0e21153f" data-readdy="true" class="flex flex-col items-center justify-center text-gray-400">
+<i class="ri-bookmark-line"></i>
+<span class="text-xs mt-1">Library</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center text-gray-400">
+<i class="ri-user-line"></i>
+<span class="text-xs mt-1"> <a href="Profile-Management.html">Profile</a></span>
+
+</div>
+</nav>
+<script>
+function toggleFilterModal() {
+const modal = document.getElementById('filterModal');
+modal.classList.toggle('show');
+}
+const mockCourses = [
+{
+id: 1,
+title: "Advanced JavaScript Development",
+instructor: "David Miller",
+rating: 4.9,
+reviews: 2100,
+price: 94.99,
+image: "course1.jpg"
+},
+{
+id: 2,
+title: "Social Media Marketing Mastery",
+instructor: "Jennifer Parker",
+rating: 4.8,
+reviews: 1600,
+price: 79.99,
+image: "course2.jpg"
+},
+{
+id: 3,
+title: "Blockchain & Crypto Fundamentals",
+instructor: "Alex Rodriguez",
+rating: 4.7,
+reviews: 1200,
+price: 89.99,
+image: "course3.jpg"
+},
+{
+id: 4,
+title: "Forex Trading Masterclass",
+instructor: "Robert Zhang",
+rating: 4.6,
+reviews: 950,
+price: 99.99,
+image: "course4.jpg"
+},
+{
+id: 5,
+title: "Freelancing Success Guide",
+instructor: "Sophie Anderson",
+rating: 4.8,
+reviews: 1400,
+price: 69.99,
+image: "course5.jpg"
+},
+{
+id: 6,
+title: "AI & ChatGPT for Business",
+instructor: "Daniel Lee",
+rating: 4.9,
+reviews: 2300,
+price: 129.99,
+image: "course6.jpg"
+},
+{
+id: 7,
+title: "Real Estate Investment Basics",
+instructor: "Michelle Watson",
+rating: 4.7,
+reviews: 1800,
+price: 149.99,
+image: "course7.jpg"
+},
+{
+id: 8,
+title: "Content Writing & Blogging",
+instructor: "Emily Brooks",
+rating: 4.6,
+reviews: 890,
+price: 59.99,
+image: "course8.jpg"
+}
+];
+</script>
+</body>
+</html>

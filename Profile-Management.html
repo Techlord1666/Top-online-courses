@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#6366f1',
+secondary: '#f59e0b'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+</style>
+</head>
+<body class="bg-gray-50">
+<nav class="fixed top-0 w-full bg-white shadow-sm z-50 px-4 h-14 flex items-center justify-between">
+<h1 class="font-['Pacifico'] text-primary text-xl">Profile</h1>
+<div class="flex items-center gap-4">
+<div class="relative">
+<div id="settingsButton" class="w-8 h-8 flex items-center justify-center cursor-pointer">
+<i class="ri-settings-3-line text-gray-600 text-xl"></i>
+</div>
+<div id="settingsDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-settings-4-line"></i>
+</div>
+App Settings
+</a>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-shield-keyhole-line"></i>
+</div>
+Privacy Settings
+</a>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-global-line"></i>
+</div>
+Language
+</a>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-question-line"></i>
+</div>
+Help & Support
+</a>
+<div class="h-px bg-gray-200 my-2"></div>
+<a href="#" class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-50">
+<div class="w-5 h-5 flex items-center justify-center mr-3">
+<i class="ri-logout-box-line"></i>
+</div>
+Log Out
+</a>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const settingsButton = document.getElementById('settingsButton');
+const settingsDropdown = document.getElementById('settingsDropdown');
+let isDropdownOpen = false;
+settingsButton.addEventListener('click', function(e) {
+e.stopPropagation();
+isDropdownOpen = !isDropdownOpen;
+settingsDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', function(e) {
+if (isDropdownOpen && !settingsDropdown.contains(e.target)) {
+settingsDropdown.classList.add('hidden');
+isDropdownOpen = false;
+}
+});
+settingsDropdown.addEventListener('click', function(e) {
+if (e.target.closest('a')) {
+settingsDropdown.classList.add('hidden');
+isDropdownOpen = false;
+}
+});
+});
+</script>
+</div>
+</nav>
+<div class="mt-14 px-4 pb-20">
+<div class="flex flex-col items-center mt-6">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/6a8bcd357784f1c8f6bc1cb3d3c6fdfa.jpg" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md" alt="Profile Photo">
+<button class="absolute bottom-0 right-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center shadow-lg">
+<i class="ri-camera-line"></i>
+</button>
+</div>
+<h2 class="mt-4 text-xl font-semibold text-gray-900">Emily Anderson</h2>
+<p class="text-gray-600 text-sm">emily.anderson@company.com</p>
+<a href="Edit-User-Profile.html" data-readdy="true" class="mt-3 px-4 py-2 border border-primary text-primary !rounded-button text-sm font-medium inline-block">Edit Profile</a>
+</div>
+<div class="mt-8 bg-white rounded-lg shadow-sm p-4">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Learning Progress</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="text-center">
+<div class="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+<i class="ri-book-read-line text-primary text-2xl"></i>
+</div>
+<p class="mt-2 text-2xl font-semibold text-gray-900">12</p>
+<p class="text-sm text-gray-600">Courses Completed</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 mx-auto bg-secondary/10 rounded-full flex items-center justify-center">
+<i class="ri-time-line text-secondary text-2xl"></i>
+</div>
+<p class="mt-2 text-2xl font-semibold text-gray-900">48h</p>
+<p class="text-sm text-gray-600">Learning Hours</p>
+</div>
+</div>
+<div id="progressChart" class="w-full h-48 mt-4"></div>
+</div>
+<div class="mt-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-semibold text-gray-900">Achievements</h3>
+<button class="text-primary text-sm font-medium">View All</button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4">
+<div class="flex-shrink-0 w-20 text-center">
+<div class="w-16 h-16 mx-auto bg-primary rounded-full flex items-center justify-center">
+<i class="ri-medal-fill text-white text-2xl"></i>
+</div>
+<p class="mt-2 text-xs text-gray-600">Quick Learner</p>
+</div>
+<div class="flex-shrink-0 w-20 text-center">
+<div class="w-16 h-16 mx-auto bg-secondary rounded-full flex items-center justify-center">
+<i class="ri-trophy-fill text-white text-2xl"></i>
+</div>
+<p class="mt-2 text-xs text-gray-600">Top Performer</p>
+</div>
+<div class="flex-shrink-0 w-20 text-center">
+<div class="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center">
+<i class="ri-fire-fill text-white text-2xl"></i>
+</div>
+<p class="mt-2 text-xs text-gray-600">5-Day Streak</p>
+</div>
+</div>
+</div>
+<div class="mt-6 bg-white rounded-lg shadow-sm divide-y">
+<a href="#" class="flex items-center justify-between p-4 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full">
+<i class="ri-user-settings-line text-primary"></i>
+</div>
+<span class="text-gray-900">Account Settings</span>
+</div>
+<i class="ri-arrow-right-s-line text-gray-400"></i>
+</a>
+<a href="#" class="flex items-center justify-between p-4 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full">
+<i class="ri-notification-line text-primary"></i>
+</div>
+<span class="text-gray-900">Notifications</span>
+</div>
+<i class="ri-arrow-right-s-line text-gray-400"></i>
+</a>
+<a href="https://readdy.ai/home/7c67ce18-4924-4779-ba56-229120b06946/8711d5d9-6426-432a-8951-f7a3ec260d4f" data-readdy="true" class="flex items-center justify-between p-4 cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full">
+<i class="ri-book-mark-line text-primary"></i>
+</div>
+<span class="text-gray-900">My Library</span>
+</div>
+<i class="ri-arrow-right-s-line text-gray-400"></i>
+</a>
+</div>
+</div>
+<nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 px-6 py-2">
+<div class="grid grid-cols-4 gap-4">
+<a href="#" class="flex flex-col items-center">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-line text-gray-400"></i>
+</div>
+<span class="text-[10px] text-gray-400 mt-1"><a href="Online-Ebook-Courses-Store.html"> Home</a></span>
+</a>
+<a href="#" class="flex flex-col items-center">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-book-open-line text-gray-400"></i>
+</div>
+<span class="text-[10px] text-gray-400 mt-1"><a href="Courses-Catelog-page.html"> Courses</a></span>
+</a>
+<a href="https://readdy.ai/home/7c67ce18-4924-4779-ba56-229120b06946/8711d5d9-6426-432a-8951-f7a3ec260d4f" data-readdy="true" class="flex flex-col items-center">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-book-mark-line text-gray-400"></i>
+</div>
+<span class="text-[10px] text-gray-400 mt-1"><a href="User-Course-Library.html"> Library</a></span>
+</a>
+<a href="#" class="flex flex-col items-center">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-fill text-primary"></i>
+</div>
+<span class="text-[10px] text-primary mt-1"><a href="Profile-Management.html"> Profile</a></span>
+</a>
+</div>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const chart = echarts.init(document.getElementById('progressChart'));
+const option = {
+tooltip: {
+trigger: 'axis'
+},
+grid: {
+left: '3%',
+right: '4%',
+bottom: '3%',
+containLabel: true
+},
+xAxis: {
+type: 'category',
+boundaryGap: false,
+data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+},
+yAxis: {
+type: 'value'
+},
+series: [{
+name: 'Learning Hours',
+type: 'line',
+smooth: true,
+data: [2.5, 3.0, 1.5, 4.0, 2.0, 3.5, 2.5],
+itemStyle: {
+color: '#6366f1'
+},
+areaStyle: {
+color: {
+type: 'linear',
+x: 0,
+y: 0,
+x2: 0,
+y2: 1,
+colorStops: [{
+offset: 0,
+color: 'rgba(99, 102, 241, 0.2)'
+}, {
+offset: 1,
+color: 'rgba(99, 102, 241, 0)'
+}]
+}
+}
+}]
+};
+chart.setOption(option);
+window.addEventListener('resize', function() {
+chart.resize();
+});
+});
+</script>
+</body>
+</html>
